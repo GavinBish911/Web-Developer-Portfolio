@@ -136,10 +136,16 @@ const Projects: React.FC = () => {
     setSelectedProject(null);
   };
 
+  // Animation variants removed to fix unused constants warning
+  // const container = {}; // Removed unused constant
+
   // Get all unique technologies for filtering
   const allTechnologies = Array.from(
     new Set(projects.flatMap(project => project.technologies))
   ).sort();
+
+  // Animation variants removed to fix unused constants warning
+  // const item = {}; // Removed unused constant
 
   // Filter projects based on selected filter
   const filteredProjects = filter === 'all' 
