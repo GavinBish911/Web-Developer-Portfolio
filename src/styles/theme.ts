@@ -1,8 +1,9 @@
-﻿import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+﻿import { createTheme, responsiveFontSizes, PaletteMode } from '@mui/material/styles';
 
-// Create a theme instance
-let theme = createTheme({
+// Define theme settings for both light and dark modes
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
+    mode,
     primary: {
       main: '#6200ea', // Vibrant purple
       light: '#9d46ff',
@@ -13,15 +14,15 @@ let theme = createTheme({
       main: '#00e5ff', // Bright cyan
       light: '#6effff',
       dark: '#00b2cc',
-      contrastText: '#000',
+      contrastText: mode === 'dark' ? '#000' : '#000',
     },
     background: {
-      default: '#fafafa',
-      paper: '#ffffff',
+      default: mode === 'dark' ? '#121212' : '#fafafa',
+      paper: mode === 'dark' ? '#1e1e1e' : '#ffffff',
     },
     text: {
-      primary: '#212121',
-      secondary: '#616161',
+      primary: mode === 'dark' ? '#ffffff' : '#212121',
+      secondary: mode === 'dark' ? '#b0b0b0' : '#616161',
     },
     error: {
       main: '#ff3d00',
@@ -117,26 +118,76 @@ let theme = createTheme({
       styleOverrides: {
         body: {
           scrollBehavior: 'smooth',
+          overflowX: 'hidden',
           '&::-webkit-scrollbar': {
-            width: '8px',
+            width: '10px',
           },
           '&::-webkit-scrollbar-track': {
-            background: '#f1f1f1',
+            background: mode === 'dark' ? '#1a1a1a' : '#f1f1f1',
+            borderRadius: '5px',
           },
           '&::-webkit-scrollbar-thumb': {
-            background: '#c5c5c5',
-            borderRadius: '4px',
+            background: mode === 'dark' 
+              ? `linear-gradient(180deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)` 
+              : `linear-gradient(180deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+            borderRadius: '5px',
+            border: mode === 'dark' ? '2px solid #1a1a1a' : '2px solid #f1f1f1',
           },
           '&::-webkit-scrollbar-thumb:hover': {
-            background: '#a8a8a8',
+            background: mode === 'dark' 
+              ? `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.dark} 100%)` 
+              : `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
           },
+          // Add global transitions for smooth theme changes
+          transition: 'background-color 0.3s ease, color 0.3s ease',
+        },
+        // Add some global styles for better animations
+        '::selection': {
+          backgroundColor: theme.palette.primary.main,
+          color: '#ffffff',
+        },
+        // Add subtle background pattern for dark mode
+        ...(mode === 'dark' && {
+          'body': {
+            backgroundImage: 'radial-gradient(rgba(98, 0, 234, 0.1) 1px, transparent 0)',
+            backgroundSize: '40px 40px',
+            backgroundPosition: '-19px -19px',
+          }
+        }),
+      },
+    },
+    // Add paper elevation styles
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundImage: 'none',
+          ...(mode === 'dark' && {
+            boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)',
+            backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05))',
+          }),
+        },
+        elevation1: {
+          ...(mode === 'dark' && {
+            boxShadow: '0 5px 20px rgba(0,0,0,0.3)',
+          }),
+        },
+        elevation4: {
+          ...(mode === 'dark' && {
+            boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
+          }),
         },
       },
     },
   },
 });
 
+// Create the dark theme by default
+let theme = createTheme(getDesignTokens('dark'));
+
 // Make typography responsive
 theme = responsiveFontSizes(theme);
 
 export default theme;
+
+// Export the getDesignTokens function for use in the theme context
+export { getDesignTokens };

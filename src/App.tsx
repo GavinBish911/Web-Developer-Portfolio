@@ -1,5 +1,5 @@
-import { ThemeProvider, CssBaseline } from '@mui/material';
-import theme from './styles/theme';
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from './utils/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <CssBaseline />
       <Header />
       <main>
