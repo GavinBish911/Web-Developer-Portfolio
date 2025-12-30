@@ -1,5 +1,5 @@
 ﻿[build]
-  command = "npm run build"
+  command = "echo 'npm run build'"
   publish = "dist"
 
 # The following redirect is intended for use with SPAs that handle routing internally
