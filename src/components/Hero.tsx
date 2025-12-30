@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
     transition: {
       duration: 3,
       repeat: Infinity,
-      repeatType: 'reverse',
+      repeatType: 'reverse' as const,
       ease: 'easeInOut',
     },
   };
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
             transition={{
               duration: 15 + Math.random() * 10,
               repeat: Infinity,
-              repeatType: 'reverse',
+              repeatType: 'reverse' as const,
               ease: 'easeInOut',
             }}
             style={{
@@ -324,7 +324,7 @@ const Hero: React.FC = () => {
             transition={{
               duration: 1.5,
               repeat: Infinity,
-              repeatType: 'loop',
+              repeatType: 'loop' as const,
             }}
           >
             <Button
