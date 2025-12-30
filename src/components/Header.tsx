@@ -38,7 +38,7 @@ const Header: React.FC = () => {
   const scrollToSection = (sectionId: string) => {
     // Extract the ID part from the href value (e.g., "/#home" -> "#home")
     const id = sectionId.includes('/') ? sectionId.split('/').pop() : sectionId;
-    const element = document.querySelector(id);
+    const element = document.querySelector(id ?? "");
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       if (mobileOpen) setMobileOpen(false);
