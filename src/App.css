@@ -5,19 +5,25 @@
   text-align: center;
 }
 
+/* Enhanced logo styling */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.logo:hover {
+  filter: drop-shadow(0 0 2em rgba(58, 134, 255, 0.6));
+  transform: scale(1.05);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em rgba(255, 0, 110, 0.6));
+  animation: logo-pulse 2s infinite;
+}
+
+/* Logo animations */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -27,16 +33,88 @@
   }
 }
 
+@keyframes logo-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Card styling */
 .card {
   padding: 2em;
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
 }
 
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(58, 134, 255, 0.15);
+}
+
+/* Documentation link styling */
 .read-the-docs {
-  color: #888;
+  color: #3a86ff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+.read-the-docs:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #3a86ff, #ff006e);
+  transition: width 0.3s ease;
+}
+
+.read-the-docs:hover {
+  color: #ff006e;
+}
+
+.read-the-docs:hover:after {
+  width: 100%;
+}
+
+/* Section styling */
+.section {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title:after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  bottom: -10px;
+  left: 20%;
+  background: linear-gradient(90deg, #3a86ff, #ff006e);
+  border-radius: 2px;
 }
