@@ -1,5 +1,7 @@
-﻿import React, { createContext, useState, useMemo, useContext, ReactNode } from 'react';
-import { ThemeProvider as MuiThemeProvider, createTheme, PaletteMode } from '@mui/material/styles';
+﻿import React, { createContext, useState, useMemo, useContext } from 'react';
+import type { ReactNode } from 'react';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
+import type { PaletteMode } from '@mui/material/styles';
 import { getDesignTokens } from '../styles/theme';
 
 // Define the context type
@@ -29,7 +31,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   // Function to toggle between light and dark modes
   const toggleColorMode = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+    setMode((prevMode: PaletteMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
   // Create the theme based on the current mode

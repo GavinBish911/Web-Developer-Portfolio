@@ -1,4 +1,5 @@
-﻿import { createTheme, responsiveFontSizes, PaletteMode } from '@mui/material/styles';
+﻿import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import type { PaletteMode } from '@mui/material/styles';
 
 // Define theme settings for both light and dark modes
 const getDesignTokens = (mode: PaletteMode) => ({

@@ -1,4 +1,5 @@
-﻿import React, { useState, ReactNode } from 'react';
+﻿import React, { useState } from 'react';
+import type { ReactNode } from 'react';
 import { Box, Paper, IconButton, Typography, Fade, useTheme } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import CloseIcon from '@mui/icons-material/Close';
