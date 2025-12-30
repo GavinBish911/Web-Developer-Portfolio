@@ -1,5 +1,5 @@
 ﻿import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-import type { PaletteMode } from '@mui/material/styles';
+import type { PaletteMode } from '@mui/material';
 
 // Define theme settings for both light and dark modes
 const getDesignTokens = (mode: PaletteMode) => ({
@@ -129,22 +129,22 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
           '&::-webkit-scrollbar-thumb': {
             background: mode === 'dark' 
-              ? `linear-gradient(180deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)` 
-              : `linear-gradient(180deg, ${theme.palette.primary.light} 0%, ${theme.palette.primary.main} 100%)`,
+              ? 'linear-gradient(180deg, #0a00b6 0%, #6200ea 100%)' 
+              : 'linear-gradient(180deg, #9d46ff 0%, #6200ea 100%)',
             borderRadius: '5px',
             border: mode === 'dark' ? '2px solid #1a1a1a' : '2px solid #f1f1f1',
           },
           '&::-webkit-scrollbar-thumb:hover': {
             background: mode === 'dark' 
-              ? `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.dark} 100%)` 
-              : `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+              ? 'linear-gradient(180deg, #6200ea 0%, #00b2cc 100%)' 
+              : 'linear-gradient(180deg, #6200ea 0%, #00e5ff 100%)',
           },
           // Add global transitions for smooth theme changes
           transition: 'background-color 0.3s ease, color 0.3s ease',
         },
         // Add some global styles for better animations
         '::selection': {
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: '#6200ea', // Primary main color
           color: '#ffffff',
         },
         // Add subtle background pattern for dark mode
