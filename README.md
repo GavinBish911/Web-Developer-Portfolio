@@ -1,6 +1,6 @@
-# Web Developer Portfolio
+# Web-Developer-Portfolio
 
-A professional portfolio website built with React, TypeScript, and Material UI to showcase my skills, experience, and projects as a web developer.
+This is my professional portfolio for web development to showcase my experience! Built with React, TypeScript, and Material UI to showcase my skills, projects, and professional journey.
 
 ![Portfolio Preview](https://via.placeholder.com/800x400?text=Portfolio+Preview)
 
@@ -37,8 +37,8 @@ A professional portfolio website built with React, TypeScript, and Material UI t
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/web-developer-portfolio.git
-   cd web-developer-portfolio
+   git clone https://github.com/GavinBish911/Web-Developer-Portfolio.git
+   cd Web-Developer-Portfolio
    ```
 
 2. Install dependencies:
@@ -106,4 +106,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-Your Name - [GitHub](https://github.com/yourusername) - [LinkedIn](https://linkedin.com/in/yourusername)
+Gavin Bish - [GitHub](https://github.com/GavinBish911) - [LinkedIn](https://linkedin.com/in/gavinbish)
