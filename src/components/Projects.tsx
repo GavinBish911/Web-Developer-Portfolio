@@ -28,6 +28,9 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import CloseIcon from '@mui/icons-material/Close';
 import CodeIcon from '@mui/icons-material/Code';
 import StarIcon from '@mui/icons-material/Star';
+import AnimatedBackground from './shared/AnimatedBackground';
+import AnimatedSectionTitle from './shared/AnimatedSectionTitle';
+import ParallaxElement from './shared/ParallaxElement';
 
 interface Project {
   id: number;
@@ -163,30 +166,12 @@ const Projects: React.FC = () => {
         overflow: 'hidden',
       }}
     >
-      {/* Background decorative elements */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '40%',
-          height: '40%',
-          background: `radial-gradient(circle, ${theme.palette.primary.light}22 0%, transparent 70%)`,
-          opacity: 0.6,
-          zIndex: 0,
-        }}
-      />
-      <Box
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '30%',
-          height: '30%',
-          background: `radial-gradient(circle, ${theme.palette.secondary.light}22 0%, transparent 70%)`,
-          opacity: 0.5,
-          zIndex: 0,
-        }}
+      {/* Enhanced animated background */}
+      <AnimatedBackground 
+        variant="tertiary" 
+        density="medium" 
+        withCodeSymbols={true}
+        opacity={0.6}
       />
 
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
@@ -197,39 +182,30 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography
-              component="span"
-              variant="overline"
-              sx={{ 
-                color: theme.palette.primary.main,
-                fontWeight: 600,
-                letterSpacing: 2,
-                background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                mb: 1,
-                display: 'block'
-              }}
-            >
-              PORTFOLIO
-            </Typography>
-            <Typography
-              component="h2"
-              variant="h3"
-              color="text.primary"
-              gutterBottom
-              sx={{ fontWeight: 700, mb: 2 }}
-            >
-              My Latest Projects
-            </Typography>
-            <Typography
-              variant="h6"
-              color="text.secondary"
-              paragraph
-              sx={{ maxWidth: 800, mx: 'auto', mb: 6, opacity: 0.8 }}
-            >
-              Explore my recent work showcasing React expertise and modern UI design principles.
-            </Typography>
+            <ParallaxElement strength={0.03} direction="vertical">
+              <Typography
+                component="span"
+                variant="overline"
+                sx={{ 
+                  color: theme.palette.primary.main,
+                  fontWeight: 600,
+                  letterSpacing: 2,
+                  background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  mb: 1,
+                  display: 'block'
+                }}
+              >
+                PORTFOLIO
+              </Typography>
+              <AnimatedSectionTitle
+                title="My Latest Projects"
+                subtitle="Explore my recent work showcasing React expertise and modern UI design principles."
+                withGradient={true}
+                withDecoration={true}
+              />
+            </ParallaxElement>
 
             {/* Project filtering tabs */}
             <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mb: 6 }}>

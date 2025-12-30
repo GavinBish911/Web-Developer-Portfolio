@@ -9,6 +9,9 @@ import CodeIcon from '@mui/icons-material/Code';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import AnimatedPopup from './shared/AnimatedPopup';
+import AnimatedBackground from './shared/AnimatedBackground';
+import ParallaxElement from './shared/ParallaxElement';
+import AnimatedSectionTitle from './shared/AnimatedSectionTitle';
 
 const About: React.FC = () => {
   const theme = useTheme();
@@ -20,8 +23,17 @@ const About: React.FC = () => {
       sx={{
         py: 10,
         bgcolor: 'background.default',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      {/* Add animated background */}
+      <AnimatedBackground 
+        variant="primary" 
+        density="low" 
+        withCodeSymbols={false}
+        opacity={0.5}
+      />
       <Container maxWidth="lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,16 +41,11 @@ const About: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <Typography
-            component="h2"
-            variant="h3"
-            align="center"
-            color="text.primary"
-            gutterBottom
-            sx={{ fontWeight: 700, mb: 6 }}
-          >
-            About Me
-          </Typography>
+          <AnimatedSectionTitle
+            title="About Me"
+            withGradient={true}
+            withDecoration={true}
+          />
 
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
@@ -48,98 +55,100 @@ const About: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Box
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    mb: { xs: 4, md: 0 },
-                  }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    drag
-                    dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-                    dragElastic={0.1}
+                <ParallaxElement strength={0.04}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      mb: { xs: 4, md: 0 },
+                    }}
                   >
-                    <Avatar
-                      sx={{
-                        width: 200,
-                        height: 200,
-                        mb: 3,
-                        bgcolor: theme.palette.primary.main,
-                        boxShadow: theme.palette.mode === 'dark' 
-                          ? '0 8px 30px rgba(98, 0, 234, 0.3), 0 0 0 2px rgba(98, 0, 234, 0.2)' 
-                          : '0 8px 24px rgba(0, 0, 0, 0.12)',
-                        position: 'relative',
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: -5,
-                          left: -5,
-                          right: -5,
-                          bottom: -5,
-                          borderRadius: '50%',
-                          background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-                          zIndex: -1,
-                          opacity: 0.7,
-                          animation: 'pulse 2s infinite',
-                        },
-                        '@keyframes pulse': {
-                          '0%': { transform: 'scale(1)', opacity: 0.7 },
-                          '50%': { transform: 'scale(1.05)', opacity: 0.4 },
-                          '100%': { transform: 'scale(1)', opacity: 0.7 },
-                        },
-                      }}
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      drag
+                      dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+                      dragElastic={0.1}
                     >
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                        style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.1 }}
+                      <Avatar
+                        sx={{
+                          width: 200,
+                          height: 200,
+                          mb: 3,
+                          bgcolor: theme.palette.primary.main,
+                          boxShadow: theme.palette.mode === 'dark' 
+                            ? '0 8px 30px rgba(98, 0, 234, 0.3), 0 0 0 2px rgba(98, 0, 234, 0.2)' 
+                            : '0 8px 24px rgba(0, 0, 0, 0.12)',
+                          position: 'relative',
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: -5,
+                            left: -5,
+                            right: -5,
+                            bottom: -5,
+                            borderRadius: '50%',
+                            background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                            zIndex: -1,
+                            opacity: 0.7,
+                            animation: 'pulse 2s infinite',
+                          },
+                          '@keyframes pulse': {
+                            '0%': { transform: 'scale(1)', opacity: 0.7 },
+                            '50%': { transform: 'scale(1.05)', opacity: 0.4 },
+                            '100%': { transform: 'scale(1)', opacity: 0.7 },
+                          },
+                        }}
                       >
-                        <Box sx={{ 
-                          width: '100%', 
-                          height: '100%', 
-                          background: `conic-gradient(from 0deg, ${theme.palette.primary.light}, ${theme.palette.secondary.light}, ${theme.palette.primary.light})`,
-                          borderRadius: '50%',
-                        }} />
-                      </motion.div>
-                      <PersonIcon sx={{ fontSize: 100, position: 'relative', zIndex: 1 }} />
-                    </Avatar>
-                  </motion.div>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                          style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.1 }}
+                        >
+                          <Box sx={{ 
+                            width: '100%', 
+                            height: '100%', 
+                            background: `conic-gradient(from 0deg, ${theme.palette.primary.light}, ${theme.palette.secondary.light}, ${theme.palette.primary.light})`,
+                            borderRadius: '50%',
+                          }} />
+                        </motion.div>
+                        <PersonIcon sx={{ fontSize: 100, position: 'relative', zIndex: 1 }} />
+                      </Avatar>
+                    </motion.div>
 
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-                      Your Name
-                    </Typography>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7, duration: 0.5 }}
-                  >
-                    <Typography 
-                      variant="subtitle1" 
-                      color="text.secondary" 
-                      align="center"
-                      sx={{
-                        background: theme.palette.mode === 'dark' 
-                          ? `linear-gradient(90deg, ${theme.palette.primary.light}, ${theme.palette.secondary.light})` 
-                          : 'inherit',
-                        WebkitBackgroundClip: theme.palette.mode === 'dark' ? 'text' : 'unset',
-                        WebkitTextFillColor: theme.palette.mode === 'dark' ? 'transparent' : 'inherit',
-                      }}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.5 }}
                     >
-                      Web Developer & UI/UX Enthusiast
-                    </Typography>
-                  </motion.div>
-                </Box>
+                      <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+                        Your Name
+                      </Typography>
+                    </motion.div>
+
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.7, duration: 0.5 }}
+                    >
+                      <Typography 
+                        variant="subtitle1" 
+                        color="text.secondary" 
+                        align="center"
+                        sx={{
+                          background: theme.palette.mode === 'dark' 
+                            ? `linear-gradient(90deg, ${theme.palette.primary.light}, ${theme.palette.secondary.light})` 
+                            : 'inherit',
+                          WebkitBackgroundClip: theme.palette.mode === 'dark' ? 'text' : 'unset',
+                          WebkitTextFillColor: theme.palette.mode === 'dark' ? 'transparent' : 'inherit',
+                        }}
+                      >
+                        Web Developer & UI/UX Enthusiast
+                      </Typography>
+                    </motion.div>
+                  </Box>
+                </ParallaxElement>
               </motion.div>
             </Grid>
 

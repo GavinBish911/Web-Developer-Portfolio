@@ -18,6 +18,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import AnimatedBackground from './shared/AnimatedBackground';
+import ParallaxElement from './shared/ParallaxElement';
 
 interface FormData {
   name: string;
@@ -80,7 +82,7 @@ const Contact: React.FC = () => {
     if (validateForm()) {
       // In a real application, you would send the form data to your backend or a service like Netlify Forms
       console.log('Form submitted:', formData);
-      
+
       // For demonstration purposes, we'll just show a success message
       setSnackbar({
         open: true,
@@ -108,8 +110,17 @@ const Contact: React.FC = () => {
       sx={{
         py: 10,
         bgcolor: theme.palette.grey[50],
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
+      {/* Add animated background */}
+      <AnimatedBackground 
+        variant="primary" 
+        density="low" 
+        withCodeSymbols={false}
+        opacity={0.4}
+      />
       <Container maxWidth="lg">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -139,96 +150,98 @@ const Contact: React.FC = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={12} md={5}>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Paper
-                  elevation={0}
-                  sx={{
-                    p: 4,
-                    height: '100%',
-                    borderRadius: 4,
-                    bgcolor: 'background.paper',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
-                  }}
+              <ParallaxElement strength={0.05} direction="horizontal">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
-                    Contact Information
-                  </Typography>
+                  <Paper
+                    elevation={0}
+                    sx={{
+                      p: 4,
+                      height: '100%',
+                      borderRadius: 4,
+                      bgcolor: 'background.paper',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08)',
+                    }}
+                  >
+                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mb: 3 }}>
+                      Contact Information
+                    </Typography>
 
-                  <Box sx={{ mb: 3 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                      <EmailIcon color="primary" sx={{ mr: 2 }} />
-                      <Typography variant="body1">
-                        <a
-                          href="mailto:your.email@example.com"
-                          style={{ color: 'inherit', textDecoration: 'none' }}
-                        >
-                          your.email@example.com
-                        </a>
-                      </Typography>
+                    <Box sx={{ mb: 3 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                        <EmailIcon color="primary" sx={{ mr: 2 }} />
+                        <Typography variant="body1">
+                          <a
+                            href="mailto:your.email@example.com"
+                            style={{ color: 'inherit', textDecoration: 'none' }}
+                          >
+                            your.email@example.com
+                          </a>
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <LocationOnIcon color="primary" sx={{ mr: 2 }} />
+                        <Typography variant="body1">Your Location, Country</Typography>
+                      </Box>
                     </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                      <LocationOnIcon color="primary" sx={{ mr: 2 }} />
-                      <Typography variant="body1">Your Location, Country</Typography>
-                    </Box>
-                  </Box>
 
-                  <Typography variant="h6" gutterBottom sx={{ mt: 4, mb: 2 }}>
-                    Connect With Me
-                  </Typography>
-                  <Box sx={{ display: 'flex', gap: 2 }}>
-                    <IconButton
-                      aria-label="LinkedIn"
-                      href="https://linkedin.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        color: '#0077B5',
-                        bgcolor: 'rgba(0, 119, 181, 0.1)',
-                        '&:hover': {
-                          bgcolor: 'rgba(0, 119, 181, 0.2)',
-                        },
-                      }}
-                    >
-                      <LinkedInIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="GitHub"
-                      href="https://github.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        color: '#333',
-                        bgcolor: 'rgba(51, 51, 51, 0.1)',
-                        '&:hover': {
-                          bgcolor: 'rgba(51, 51, 51, 0.2)',
-                        },
-                      }}
-                    >
-                      <GitHubIcon />
-                    </IconButton>
-                    <IconButton
-                      aria-label="Twitter"
-                      href="https://twitter.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        color: '#1DA1F2',
-                        bgcolor: 'rgba(29, 161, 242, 0.1)',
-                        '&:hover': {
-                          bgcolor: 'rgba(29, 161, 242, 0.2)',
-                        },
-                      }}
-                    >
-                      <TwitterIcon />
-                    </IconButton>
-                  </Box>
-                </Paper>
-              </motion.div>
+                    <Typography variant="h6" gutterBottom sx={{ mt: 4, mb: 2 }}>
+                      Connect With Me
+                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 2 }}>
+                      <IconButton
+                        aria-label="LinkedIn"
+                        href="https://linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          color: '#0077B5',
+                          bgcolor: 'rgba(0, 119, 181, 0.1)',
+                          '&:hover': {
+                            bgcolor: 'rgba(0, 119, 181, 0.2)',
+                          },
+                        }}
+                      >
+                        <LinkedInIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="GitHub"
+                        href="https://github.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          color: '#333',
+                          bgcolor: 'rgba(51, 51, 51, 0.1)',
+                          '&:hover': {
+                            bgcolor: 'rgba(51, 51, 51, 0.2)',
+                          },
+                        }}
+                      >
+                        <GitHubIcon />
+                      </IconButton>
+                      <IconButton
+                        aria-label="Twitter"
+                        href="https://twitter.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          color: '#1DA1F2',
+                          bgcolor: 'rgba(29, 161, 242, 0.1)',
+                          '&:hover': {
+                            bgcolor: 'rgba(29, 161, 242, 0.2)',
+                          },
+                        }}
+                      >
+                        <TwitterIcon />
+                      </IconButton>
+                    </Box>
+                  </Paper>
+                </motion.div>
+              </ParallaxElement>
             </Grid>
 
             <Grid item xs={12} md={7}>
